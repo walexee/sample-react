@@ -1,0 +1,11 @@
+.card {
+    width: 100px;
+    height: 100px;
+    border: 3px solid red;
+    background: pink;
+    margin: 10px;
+    text-align: center;
+    font-size: 4em;
+    color: red;
+    float: left;
+}
