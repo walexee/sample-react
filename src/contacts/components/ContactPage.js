@@ -10,6 +10,7 @@ class ContactPage extends Component {
                 <ContactsList />
                 <ShowEditor />
                 <SaveContact />
+                <p><a href="/counter">See Counter</a></p>
             </div>
         );
     }

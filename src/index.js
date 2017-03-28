@@ -1,19 +1,11 @@
-// import React from 'react';
-// import ReactDOM from 'react-dom';
-// import App from './components/app/App';
-// import './assets/index.css';
-
-// ReactDOM.render(
-//   <App />,
-//   document.getElementById('root')
-// );
-
 import React from 'react';
 import ReactDOM from 'react-dom';
-import ContactPage from './contacts/components/ContactPage';
+import CounterPage from './counter/components/counterPage/CounterPage';
+import ContactsList from './contacts/containers/ContactsList';
 import reducer from './contacts/reducers';
 import { createStore } from 'redux';
 import { Provider } from 'react-redux';
+import { BrowserRouter as Router, Route } from 'react-router-dom';
 
 const initialState = {
   contacts: [{id: 1, firstName: 'John', lastName: 'Jobs', email: 'john.jobs@example.com'}],
@@ -23,7 +15,12 @@ const store = createStore(reducer, initialState);
 
 ReactDOM.render(
   <Provider store={store}>
-    <ContactPage />
+    <Router>
+      <div>
+        <Route path="/" component={ContactsList} />
+        <Route path="/counter" component={CounterPage} />
+      </div>
+    </Router>
   </Provider>,
   document.getElementById('root')
 );

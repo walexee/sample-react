@@ -1,9 +1,9 @@
 import React, { Component } from 'react';
 import Card from '../card/Card';
-import logo from '../../assets/logo.svg';
-import './App.css';
+import logo from '../../../assets/logo.svg';
+import './CounterPage.css';
 
-class App extends Component {
+class CounterPage extends Component {
   constructor(props) {
     super(props);
 
@@ -61,6 +61,7 @@ class App extends Component {
         <p className="App-intro">
           To get started, edit <code>src/App.js</code> and save to reload {this.name}.
         </p>
+        <p><a href="/">See Contacts</a></p>
         <div>
           {this.getPlayButton(true)} 
           <input type="number" name="multiplier" value={this.state.multiplier} onChange={this.handleMultiplierChange} />
@@ -73,4 +74,4 @@ class App extends Component {
   }
 }
 
-export default App;
+export default CounterPage;
