@@ -1,25 +1,32 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
 import CounterPage from './counter/components/counterPage/CounterPage';
-import ContactsList from './contacts/containers/ContactsList';
-import reducer from './contacts/reducers';
-import { createStore } from 'redux';
+import ContactsContainer from './contacts/contacts.container';
+import * as reducers from './contacts/contacts.reducer';
+import { createStore, combineReducers  } from 'redux';
 import { Provider } from 'react-redux';
-import { BrowserRouter as Router, Route } from 'react-router-dom';
+import { Router, Route, IndexRoute, browserHistory } from 'react-router';
+import { syncHistoryWithStore, routerReducer } from 'react-router-redux';
+import App from './App';
+import Home from './Home';
 
-const initialState = {
-  contacts: [{id: 1, firstName: 'John', lastName: 'Jobs', email: 'john.jobs@example.com'}],
-  contactInEdit: {}
-}
-const store = createStore(reducer, initialState);
+const reducer = combineReducers({
+  ...reducers,
+  routing: routerReducer
+});
+
+const store = createStore(reducer);
+
+const history = syncHistoryWithStore(browserHistory, store);
 
 ReactDOM.render(
   <Provider store={store}>
-    <Router>
-      <div>
-        <Route path="/" component={ContactsList} />
-        <Route path="/counter" component={CounterPage} />
-      </div>
+    <Router history={history}>
+      <Route path="/" component={App}>
+        <IndexRoute component={Home}/>
+        <Route path="contacts" component={ContactsContainer} />
+        <Route path="counter" component={CounterPage} />
+      </Route>
     </Router>
   </Provider>,
   document.getElementById('root')

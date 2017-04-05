@@ -15,7 +15,7 @@ export default class ContactTable extends Component {
                     </tr>
                 </thead>
                 <tbody>
-                    {this.props.contacts.map(contact => 
+                    {!this.props.contacts ? null : this.props.contacts.map(contact => 
                         <ContactRow 
                             key={contact.id}
                             contact={contact}

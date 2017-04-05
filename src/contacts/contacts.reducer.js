@@ -1,4 +1,10 @@
-const contacts = (state, action) => {
+// move the initial state to a better place
+const initialState = {
+  contacts: [{id: 1, firstName: 'John', lastName: 'Jobs', email: 'john.jobs@example.com'}],
+  contactInEdit: {}
+}
+
+const contactReducers = (state = initialState, action) => {
     switch (action.type) {
         case 'ADD_CONTACT':
             let contact = state.contacts.find(item => item.id === action.contact.id);
@@ -30,4 +36,4 @@ const contacts = (state, action) => {
     }
 };
 
-export default contacts;
+export default contactReducers;
