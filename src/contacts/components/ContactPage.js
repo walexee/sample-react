@@ -1,29 +1,33 @@
-import React, { Component } from 'react';
+import React from 'react';
 import ContactTable from './ContactTable';
 import AddContactButton from './AddContactButton';
 import ContactEditor from './ContactEditor';
 
-export default class ContactPage extends Component {
-    // componentWillReceiveProps(nextProps) {
-    //     console.log(nextProps);
-    // }
+export const ContactPage = (props) => (
+    <div>
+        <ContactTable 
+            contacts={props.contacts} 
+            editContact={props.editContact} 
+            removeContact={props.removeContact}/>
+        <AddContactButton 
+            showEditor={props.showEditor}
+            addNewContact={props.addNewContact}  />
+        <ContactEditor 
+            showEditor={props.showEditor}
+            contact={props.contact}
+            saveContact={props.saveContact} />
+        <p><a href="/counter">See Counter</a></p>
+    </div>
+);
 
-    render() {
-        return (
-            <div>
-                <ContactTable 
-                    contacts={this.props.contacts} 
-                    editContact={this.props.editContact} 
-                    removeContact={this.props.removeContact}/>
-                <AddContactButton 
-                    showEditor={this.props.showEditor}
-                    addNewContact={this.props.addNewContact}  />
-                <ContactEditor 
-                    showEditor={this.props.showEditor}
-                    contact={this.props.contact}
-                    saveContact={this.props.saveContact} />
-                <p><a href="/counter">See Counter</a></p>
-            </div>
-        );
-    }
-}
+ContactPage.propTypes = {
+    contacts: React.PropTypes.array.isRequired,
+    contact: React.PropTypes.object,
+    showEditor: React.PropTypes.bool,
+    saveContact: React.PropTypes.func.isRequired,
+    addNewContact: React.PropTypes.func.isRequired,
+    editContact: React.PropTypes.func.isRequired,
+    removeContact: React.PropTypes.func.isRequired,
+};
+
+export default ContactPage;

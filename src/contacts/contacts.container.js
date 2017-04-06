@@ -3,9 +3,9 @@ import ContactPage from './components/ContactPage';
 import { showEdit, addContact } from './contacts.action';
 
 const mapStateToProps = (state, ownProps) => ({
-    contacts: state.contacts,
-    contact: state.contactInEdit,
-    showEditor: state.showEditor
+        contacts: state.default.contacts,
+        contact: state.default.contactInEdit,
+        showEditor: state.default.showEditor
 });
 
 const mapDispatchToProps = (dispatch, props) => ({
