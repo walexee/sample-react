@@ -17,11 +17,12 @@ class ContactEditor extends Component {
 
     setContactValue(contact) {
         this.setState((prevState, props) => {
+            let contactData = contact || {};
             return {
-                id: (contact || {id: Math.round(Math.random() * 1000000000)}).id,
-                firstName: (contact || {}).firstName,
-                lastName: (contact || {}).lastName,
-                email: (contact || {}).email
+                id: contactData.id,
+                firstName: contactData.firstName,
+                lastName: contactData.lastName,
+                email: contactData.email
             };
         });
     }
@@ -48,7 +49,7 @@ class ContactEditor extends Component {
         return (
             <div>
                 <input type="text" name="firstName" onChange={this.handleValueChange} value={this.state.firstName} placeholder="First Name"/>
-                <input type="text" name="lastName" onChange={this.handleValueChange} value={this.state.lastName} placeholder="Lat Name" />
+                <input type="text" name="lastName" onChange={this.handleValueChange} value={this.state.lastName} placeholder="Last Name" />
                 <input type="email" name="email" onChange={this.handleValueChange} value={this.state.email} placeholder="Email Address" />
                 <button onClick={this.handleBtnClick}>Save</button>
             </div>

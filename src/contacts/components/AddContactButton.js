@@ -1,13 +1,16 @@
-import React, { Component } from 'react';
+import React from 'react';
 
-export default class AddContactButton extends Component {
-    render() {
-        if (this.props.showEditor) {
-            return null;
-        }
-
-        return (
-            <button onClick={this.props.addNewContact}>Add Contact</button>
-        );
+const AddContactButton = (props) => {
+    if (props.showEditor) {
+        return null;
     }
+
+    return <button onClick={props.addNewContact}>Add Contact</button>
 }
+
+AddContactButton.propTypes = {
+    showEditor: React.PropTypes.bool,
+    addNewContact: React.PropTypes.func.isRequired
+};
+
+export default AddContactButton

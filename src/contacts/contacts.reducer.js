@@ -1,3 +1,5 @@
+import {contactActions} from './contacts.container';
+
 // move the initial state to a better place
 const initialState = {
   contacts: [{id: 1, firstName: 'John', lastName: 'Jobs', email: 'john.jobs@example.com'}],
@@ -6,7 +8,7 @@ const initialState = {
 
 const contactReducers = (state = initialState, action) => {
     switch (action.type) {
-        case 'ADD_CONTACT':
+        case contactActions.ADD_CONTACT:
             let contact = state.contacts.find(item => item.id === action.contact.id);
 
             if (contact) {
@@ -21,16 +23,19 @@ const contactReducers = (state = initialState, action) => {
                 contactInEdit: {id: 0, firstName: '', lastName: '', email: ''},
                 showEditor: false
             };
-        case 'REMOVE_CONTACT':
+
+        case contactActions.REMOVE_CONTACT:
             return {
                 contacts: state.contacts.filter(item => item.id !== action.contactId)
             };
-        case 'SHOW_CONTACT_EDIT':
+
+        case contactActions.SHOW_CONTACT_EDIT:
             return {
                 ...state,
                 contactInEdit: action.contact,
                 showEditor: true
             };
+            
         default:
             return state;
     }

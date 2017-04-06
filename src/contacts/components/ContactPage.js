@@ -3,7 +3,7 @@ import ContactTable from './ContactTable';
 import AddContactButton from './AddContactButton';
 import ContactEditor from './ContactEditor';
 
-export const ContactPage = (props) => (
+const ContactPage = (props) => (
     <div>
         <ContactTable 
             contacts={props.contacts} 
@@ -21,7 +21,7 @@ export const ContactPage = (props) => (
 );
 
 ContactPage.propTypes = {
-    contacts: React.PropTypes.array.isRequired,
+    contacts: React.PropTypes.arrayOf(React.PropTypes.object).isRequired,
     contact: React.PropTypes.object,
     showEditor: React.PropTypes.bool,
     saveContact: React.PropTypes.func.isRequired,
