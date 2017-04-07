@@ -7,6 +7,7 @@ import { createStore, combineReducers  } from 'redux';
 import { Provider } from 'react-redux';
 import { Router, Route, IndexRoute, browserHistory } from 'react-router';
 import { syncHistoryWithStore, routerReducer } from 'react-router-redux';
+import { devToolsEnhancer } from 'redux-devtools-extension/developmentOnly';
 import App from './App';
 import Home from './Home';
 
@@ -15,7 +16,10 @@ const reducer = combineReducers({
   routing: routerReducer
 });
 
-const store = createStore(reducer);
+const store = createStore(
+  reducer,
+  devToolsEnhancer()
+);
 
 const history = syncHistoryWithStore(browserHistory, store);
 
